@@ -12,7 +12,7 @@ class CaixaEletronico: # Cria a classe do caixa eletronico
             elif oper == "depositar":
                 self.depositar(nomeConta) # envia como parametro o nome da conta da pessoa
             elif oper == "criar conta":
-                self.criarConta(nomeConta)
+                self.criarConta()
             elif oper == "ver saldo":
                 self.verSaldo(nomeConta)
             else: # caso a pessoa digite algo que não é uma das opções
@@ -30,7 +30,7 @@ class CaixaEletronico: # Cria a classe do caixa eletronico
                 contaExiste = False
         if contaExiste == False: # e caso a variavel seja falsa, executa a func que cria uma conta
             print("Você não possui conta, vamos criar uma pra você")
-            self.criarConta(nomeConta) # chama a funcao criarConta com o nome da conta sendo o parametro
+            self.criarConta() # chama a funcao criarConta com o nome da conta sendo o parametro
 
     def sacar(self, conta): # função sacar
         for i in range(len(self.contas)): # for que verifica qual a conta que o dinheiro  vai ser sacado
@@ -59,8 +59,8 @@ class CaixaEletronico: # Cria a classe do caixa eletronico
             else:
                 pass
 
-    def criarConta(self, conta): # função criar conta
-        nome = conta
+    def criarConta(self): # função criar conta
+        nome = input("Insira seu nome para a criação da conta: ")
         self.contas.append(nome) # adiciona o nome na lista de contas
         self.saldo.append(0) # adiciona o saldo 0 na mesma posição da conta
         print("Sua conta foi criada, "+nome+"!")
