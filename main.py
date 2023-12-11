@@ -4,6 +4,20 @@ class CaixaEletronico: # Cria a classe do caixa eletronico
         self.saldo = [1000, 1500, 2000] # "self" é pra falar que é uma caracterista da classe CaixaEletronico
         self.notas = [0, 0, 0, 0, 0, 0] # não só uma variavel normal
 
+    def verifiConta(self): # Funcão que verifica se a conta já existe ou não
+        nomeConta = input("Digite o seu nome: ")
+        contaExiste = False
+        for i in range(len(self.contas)): # for que vai de posição em posição do vetor/matriz contas que foi criado ali em cima
+            if nomeConta == self.contas[i]: # e verifica se o nome que a pessa colocou consta como uma conta ja inserida no vetor
+                self.operacao(nomeConta) # Se tem, ele executa a funcao operação para continuar o processo
+                break
+            else: # se nao, ele coloca a variavel boolean como "False"
+                contaExiste = False
+        if contaExiste == False: # e caso a variavel seja falsa, executa a func que cria uma conta
+            print("Você não possui conta, vamos criar uma pra você")
+            self.criarConta() # chama a funcao criarConta com o nome da conta sendo o parametro
+
+    
     def operacao(self, conta): # funcao das operacoes como sacar depositar etc, tipo um menu inicial
             nomeConta = conta # "conta" vai ser fornecido por outra funcao
             oper = input("O que você quer fazer? (sacar, depositar, criar conta ou ver saldo) ").lower() #recebe a operação que usuario quer fazer
@@ -18,19 +32,6 @@ class CaixaEletronico: # Cria a classe do caixa eletronico
             else: # caso a pessoa digite algo que não é uma das opções
                 print("sacar, depositar, criar conta ou ver saldo.")
                 self.operacao(nomeConta)
-
-    def verifiConta(self): # Funcão que verifica se a conta já existe ou não
-        nomeConta = input("Digite o seu nome: ")
-        contaExiste = False
-        for i in range(len(self.contas)): # for que vai de posição em posição do vetor/matriz contas que foi criado ali em cima
-            if nomeConta == self.contas[i]: # e verifica se o nome que a pessa colocou consta como uma conta ja inserida no vetor
-                self.operacao(nomeConta) # Se tem, ele executa a funcao operação para continuar o processo
-                break
-            else: # se nao, ele coloca a variavel boolean como "False"
-                contaExiste = False
-        if contaExiste == False: # e caso a variavel seja falsa, executa a func que cria uma conta
-            print("Você não possui conta, vamos criar uma pra você")
-            self.criarConta() # chama a funcao criarConta com o nome da conta sendo o parametro
 
     def sacar(self, conta): # função sacar
         for i in range(len(self.contas)): # for que verifica qual a conta que o dinheiro  vai ser sacado
